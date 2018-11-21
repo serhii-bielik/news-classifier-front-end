@@ -63,9 +63,29 @@ namespace NewsClassifier.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap newspaper_add {
+            get {
+                object obj = ResourceManager.GetObject("newspaper_add", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap tag_blue_add {
             get {
                 object obj = ResourceManager.GetObject("tag_blue_add", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap tag_red {
+            get {
+                object obj = ResourceManager.GetObject("tag_red", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
