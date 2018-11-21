@@ -262,6 +262,7 @@
             this.btnAddText.Text = "Add Text";
             this.btnAddText.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnAddText.UseVisualStyleBackColor = true;
+            this.btnAddText.Click += new System.EventHandler(this.btnAddText_Click);
             // 
             // btn_classify
             // 
@@ -280,7 +281,7 @@
             // ID
             // 
             this.ID.DataPropertyName = "Id";
-            this.ID.HeaderText = "ID";
+            this.ID.HeaderText = "#";
             this.ID.Name = "ID";
             this.ID.ReadOnly = true;
             this.ID.Width = 50;

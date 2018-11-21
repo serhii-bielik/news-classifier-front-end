@@ -56,6 +56,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AddText.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddText.Designer.cs">
+      <DependentUpon>AddText.cs</DependentUpon>
+    </Compile>
     <Compile Include="ClassificationResult.cs" />
     <Compile Include="ClassifierManager.cs" />
     <Compile Include="Main.cs">
@@ -67,6 +73,9 @@
     <Compile Include="NewsItem.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="AddText.resx">
+      <DependentUpon>AddText.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Main.resx">
       <DependentUpon>Main.cs</DependentUpon>
     </EmbeddedResource>

@@ -83,5 +83,11 @@ namespace NewsClassifier
             groupBox2.Enabled = true;
             groupBox3.Enabled = true;
         }
+
+        private void btnAddText_Click(object sender, EventArgs e)
+        {
+            AddText add = new AddText();
+            add.ShowDialog(this);
+        }
     }
 }
