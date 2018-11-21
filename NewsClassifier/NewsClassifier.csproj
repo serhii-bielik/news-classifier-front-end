@@ -56,6 +56,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ClassificationResult.cs" />
     <Compile Include="ClassifierManager.cs" />
     <Compile Include="Main.cs">
       <SubType>Form</SubType>
@@ -63,6 +64,7 @@
     <Compile Include="Main.Designer.cs">
       <DependentUpon>Main.cs</DependentUpon>
     </Compile>
+    <Compile Include="NewsItem.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Main.resx">
@@ -96,6 +98,9 @@
     <Content Include="if_constr_news_1267301.ico" />
     <Content Include="if_news_87446.ico" />
     <Content Include="if_news_87900.ico" />
+    <None Include="Resources\error.png" />
+    <None Include="Resources\cancel.png" />
+    <None Include="Resources\accept.png" />
     <None Include="Resources\tag_red.png" />
     <None Include="Resources\newspaper_add.png" />
     <None Include="Resources\tag_blue_add.png" />

@@ -31,11 +31,11 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main));
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.label3 = new System.Windows.Forms.Label();
+            this.labF1 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
+            this.labRecall = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.labTotalCaptchas = new System.Windows.Forms.Label();
+            this.labPrecision = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
@@ -86,11 +86,11 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.label3);
+            this.groupBox1.Controls.Add(this.labF1);
             this.groupBox1.Controls.Add(this.label4);
-            this.groupBox1.Controls.Add(this.label1);
+            this.groupBox1.Controls.Add(this.labRecall);
             this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Controls.Add(this.labTotalCaptchas);
+            this.groupBox1.Controls.Add(this.labPrecision);
             this.groupBox1.Controls.Add(this.label7);
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.groupBox1.Location = new System.Drawing.Point(12, 10);
@@ -100,15 +100,15 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Performance metrics";
             // 
-            // label3
+            // labF1
             // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Consolas", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label3.Location = new System.Drawing.Point(270, 34);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(20, 22);
-            this.label3.TabIndex = 5;
-            this.label3.Text = "-";
+            this.labF1.AutoSize = true;
+            this.labF1.Font = new System.Drawing.Font("Consolas", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labF1.Location = new System.Drawing.Point(270, 34);
+            this.labF1.Name = "labF1";
+            this.labF1.Size = new System.Drawing.Size(20, 22);
+            this.labF1.TabIndex = 5;
+            this.labF1.Text = "-";
             // 
             // label4
             // 
@@ -120,15 +120,15 @@
             this.label4.TabIndex = 6;
             this.label4.Text = "F1:";
             // 
-            // label1
+            // labRecall
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Consolas", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label1.Location = new System.Drawing.Point(177, 34);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(20, 22);
-            this.label1.TabIndex = 3;
-            this.label1.Text = "-";
+            this.labRecall.AutoSize = true;
+            this.labRecall.Font = new System.Drawing.Font("Consolas", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labRecall.Location = new System.Drawing.Point(177, 34);
+            this.labRecall.Name = "labRecall";
+            this.labRecall.Size = new System.Drawing.Size(20, 22);
+            this.labRecall.TabIndex = 3;
+            this.labRecall.Text = "-";
             // 
             // label2
             // 
@@ -140,15 +140,15 @@
             this.label2.TabIndex = 4;
             this.label2.Text = "Recall:";
             // 
-            // labTotalCaptchas
+            // labPrecision
             // 
-            this.labTotalCaptchas.AutoSize = true;
-            this.labTotalCaptchas.Font = new System.Drawing.Font("Consolas", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.labTotalCaptchas.Location = new System.Drawing.Point(61, 34);
-            this.labTotalCaptchas.Name = "labTotalCaptchas";
-            this.labTotalCaptchas.Size = new System.Drawing.Size(20, 22);
-            this.labTotalCaptchas.TabIndex = 1;
-            this.labTotalCaptchas.Text = "-";
+            this.labPrecision.AutoSize = true;
+            this.labPrecision.Font = new System.Drawing.Font("Consolas", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labPrecision.Location = new System.Drawing.Point(61, 34);
+            this.labPrecision.Name = "labPrecision";
+            this.labPrecision.Size = new System.Drawing.Size(20, 22);
+            this.labPrecision.TabIndex = 1;
+            this.labPrecision.Text = "-";
             // 
             // label7
             // 
@@ -279,6 +279,7 @@
             // 
             // ID
             // 
+            this.ID.DataPropertyName = "Id";
             this.ID.HeaderText = "ID";
             this.ID.Name = "ID";
             this.ID.ReadOnly = true;
@@ -287,12 +288,14 @@
             // Content
             // 
             this.Content.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Content.DataPropertyName = "Text";
             this.Content.HeaderText = "Content";
             this.Content.Name = "Content";
             this.Content.ReadOnly = true;
             // 
             // Prediction
             // 
+            this.Prediction.DataPropertyName = "Prediction";
             this.Prediction.HeaderText = "Prediction";
             this.Prediction.Name = "Prediction";
             this.Prediction.ReadOnly = true;
@@ -300,6 +303,7 @@
             // 
             // Real
             // 
+            this.Real.DataPropertyName = "TrueLabels";
             this.Real.HeaderText = "Real Label";
             this.Real.Name = "Real";
             this.Real.ReadOnly = true;
@@ -307,6 +311,7 @@
             // 
             // Status
             // 
+            this.Status.DataPropertyName = "Status";
             this.Status.HeaderText = "Status";
             this.Status.Name = "Status";
             this.Status.ReadOnly = true;
@@ -322,6 +327,7 @@
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.dataGridView1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MinimumSize = new System.Drawing.Size(766, 300);
             this.Name = "Main";
             this.Text = "News Classifier Interface";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
@@ -340,11 +346,11 @@
 
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label labF1;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label labRecall;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label labTotalCaptchas;
+        private System.Windows.Forms.Label labPrecision;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Button btn_classify;
