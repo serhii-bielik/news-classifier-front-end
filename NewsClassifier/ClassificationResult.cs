@@ -19,9 +19,9 @@ namespace NewsClassifier
         public double Recall { get; set; }
 
         [JsonProperty(PropertyName = "predictions")]
-        public IList<string> Predictions { get; set; }
+        public IList<IList<string>> Predictions { get; set; }
 
         [JsonProperty(PropertyName = "true-labels")]
-        public IList<string> TrueLabels { get; set; }
+        public IList<IList<string>> TrueLabels { get; set; }
     }
 }
