@@ -14,17 +14,32 @@ namespace NewsClassifier
         public string Text { get; set; }
         public string Prediction { get; set; }
         public string TrueLabels { get; set; }
+        public string Match { get; set; }
         public Image Status { get; set; }
 
-        public NewsItem(int id, string text, string prediction, string trueLabels)
+        public NewsItem(int id, string text, string prediction, string trueLabels, int correct = 0, int total = 0)
         {
             Id = id;
             Text = text;
             Prediction = prediction;
             TrueLabels = trueLabels;
-            //TODO: Prediction Status
-            //Status = (Guess == Answer) ? Resources.accept : Resources.cancel;
-            Status = Resources.accept;
+
+            if (correct == 0)
+                Status = Resources.cancel;
+            else if (correct < total)
+                Status = Resources.error;
+            else
+                Status = Resources.accept;
+
+            if (correct == 0 && total == 0)
+            {
+                Match = "-";
+                Status = Resources.accept;
+            }
+            else
+                Match = correct + "/" + total;
+
+            
         }
     }
 }

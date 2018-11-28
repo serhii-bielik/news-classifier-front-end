@@ -50,9 +50,18 @@ namespace NewsClassifier
         private string PrepareUrl()
         {
             //TODO: Request for raw text
+            string url = "http://127.0.0.1:5000/";
 
-            string url = @"http://127.0.0.1:5000/test?start={FROM}&end={TO}&model-type={MODEL}";
-            url = url.Replace("{FROM}", newsFrom.ToString()).Replace("{TO}", newsTo.ToString());
+            if (String.IsNullOrEmpty(textData))
+            {
+                url += @"test?start={FROM}&end={TO}&model-type={MODEL}";
+                url = url.Replace("{FROM}", newsFrom.ToString()).Replace("{TO}", newsTo.ToString());
+            } 
+            else
+            {
+                url += @"doc-test?content={CONTENT}&model-type={MODEL}";
+                url = url.Replace("{CONTENT}", textData);
+            }       
 
             string model = String.Empty;
             switch (modelId)

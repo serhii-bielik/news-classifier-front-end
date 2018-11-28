@@ -17,6 +17,7 @@ namespace NewsClassifier
         {
             InitializeComponent();
             comboM.SelectedIndex = 0;
+            dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
         }
 
         private void btn_classify_Click(object sender, EventArgs e)
@@ -24,7 +25,7 @@ namespace NewsClassifier
             groupBox2.Enabled = false;
             groupBox3.Enabled = false;
 
-            if (textData == String.Empty && 
+            if (String.IsNullOrEmpty(textData) && 
                 (numFrom.Value == 0 && numTo.Value == 0))
             {
                 MessageBox.Show("Please specify input data", "Wrong Input", 
@@ -45,24 +46,46 @@ namespace NewsClassifier
 
                     if (result != null)
                     {
-                        labPrecision.Text = Math.Round(result.Precision, 3).ToString();
-                        labRecall.Text = Math.Round(result.Recall, 3).ToString();
-                        labF1.Text = Math.Round(result.F1, 3).ToString();
-
                         List<NewsItem> news = new List<NewsItem>();
 
-                        for (int i = 0; i < result.Predictions.Count; i++)
+                        if (String.IsNullOrEmpty(textData))
                         {
+                            labPrecision.Text = Math.Round(result.Precision, 4).ToString();
+                            labRecall.Text = Math.Round(result.Recall, 4).ToString();
+                            labF1.Text = Math.Round(result.F1, 4).ToString();
+
+                            for (int i = 0; i < result.Predictions.Count; i++)
+                            {
+                                string prediction = String.Empty;
+                                if (result.Predictions[i].Count != 0)
+                                    prediction = string.Join(", ", result.Predictions[i]);
+
+                                string trueLabels = String.Empty;
+                                if (result.TrueLabels[i].Count != 0)
+                                    trueLabels = string.Join(", ", result.TrueLabels[i]);
+
+                                int correctPredictions = 0;
+                                foreach (string pred in result.Predictions[i])
+                                {
+                                    if (result.TrueLabels[i].Contains(pred))
+                                        correctPredictions++;
+                                }
+
+                                news.Add(new NewsItem(i + 1, result.Text[i], prediction, trueLabels, 
+                                    correctPredictions, result.TrueLabels[i].Count));
+                            }
+                        } 
+                        else
+                        {
+                            labPrecision.Text = "-";
+                            labRecall.Text = "-";
+                            labF1.Text = "-";
+
                             string prediction = String.Empty;
-                            if (result.Predictions[i].Count != 0)
-                                prediction = string.Join(", ", result.Predictions[i]);
+                            if (result.Predictions[0].Count != 0)
+                                prediction = string.Join(", ", result.Predictions[0]);
 
-                            string trueLabels = String.Empty;
-                            if (result.TrueLabels[i].Count != 0)
-                                trueLabels = string.Join(", ", result.TrueLabels[i]);
-
-                            news.Add(new NewsItem(i + 1, "Lorem ipsum dolar amet...",
-                                prediction, trueLabels));
+                            news.Add(new NewsItem(1, result.SingleText, prediction, "-"));
                         }
 
                         dataGridView1.DataSource = news;
@@ -86,8 +109,9 @@ namespace NewsClassifier
 
         private void btnAddText_Click(object sender, EventArgs e)
         {
-            AddText add = new AddText();
+            AddText add = new AddText(textData);
             add.ShowDialog(this);
+            textData = add.text;
         }
     }
 }

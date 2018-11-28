@@ -18,6 +18,12 @@ namespace NewsClassifier
         [JsonProperty(PropertyName = "recall")]
         public double Recall { get; set; }
 
+        [JsonProperty(PropertyName = "content-snapshots")]
+        public IList<string> Text { get; set; }
+
+        [JsonProperty(PropertyName = "content-snapshot")]
+        public string SingleText { get; set; }
+
         [JsonProperty(PropertyName = "predictions")]
         public IList<IList<string>> Predictions { get; set; }
 

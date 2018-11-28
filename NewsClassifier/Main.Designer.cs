@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main));
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -38,26 +39,27 @@
             this.labPrecision = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.btn_classify = new System.Windows.Forms.Button();
             this.comboM = new System.Windows.Forms.ComboBox();
-            this.label15 = new System.Windows.Forms.Label();
-            this.numFrom = new System.Windows.Forms.NumericUpDown();
-            this.label16 = new System.Windows.Forms.Label();
-            this.numTo = new System.Windows.Forms.NumericUpDown();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.label14 = new System.Windows.Forms.Label();
             this.btnAddText = new System.Windows.Forms.Button();
-            this.btn_classify = new System.Windows.Forms.Button();
+            this.numTo = new System.Windows.Forms.NumericUpDown();
+            this.label16 = new System.Windows.Forms.Label();
+            this.numFrom = new System.Windows.Forms.NumericUpDown();
+            this.label15 = new System.Windows.Forms.Label();
             this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Content = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Prediction = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Real = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Match = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Status = new System.Windows.Forms.DataGridViewImageColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numFrom)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numTo)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numFrom)).BeginInit();
             this.SuspendLayout();
             // 
             // dataGridView1
@@ -74,6 +76,7 @@
             this.Content,
             this.Prediction,
             this.Real,
+            this.Match,
             this.Status});
             this.dataGridView1.Location = new System.Drawing.Point(12, 97);
             this.dataGridView1.Name = "dataGridView1";
@@ -81,7 +84,7 @@
             this.dataGridView1.RowHeadersVisible = false;
             this.dataGridView1.ShowCellToolTips = false;
             this.dataGridView1.ShowEditingIcon = false;
-            this.dataGridView1.Size = new System.Drawing.Size(726, 431);
+            this.dataGridView1.Size = new System.Drawing.Size(866, 431);
             this.dataGridView1.TabIndex = 0;
             // 
             // groupBox1
@@ -95,7 +98,7 @@
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.groupBox1.Location = new System.Drawing.Point(12, 10);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(331, 81);
+            this.groupBox1.Size = new System.Drawing.Size(438, 81);
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Performance metrics";
@@ -104,7 +107,7 @@
             // 
             this.labF1.AutoSize = true;
             this.labF1.Font = new System.Drawing.Font("Consolas", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.labF1.Location = new System.Drawing.Point(270, 34);
+            this.labF1.Location = new System.Drawing.Point(335, 34);
             this.labF1.Name = "labF1";
             this.labF1.Size = new System.Drawing.Size(20, 22);
             this.labF1.TabIndex = 5;
@@ -114,7 +117,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label4.Location = new System.Drawing.Point(251, 38);
+            this.label4.Location = new System.Drawing.Point(316, 38);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(24, 15);
             this.label4.TabIndex = 6;
@@ -124,7 +127,7 @@
             // 
             this.labRecall.AutoSize = true;
             this.labRecall.Font = new System.Drawing.Font("Consolas", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.labRecall.Location = new System.Drawing.Point(177, 34);
+            this.labRecall.Location = new System.Drawing.Point(203, 34);
             this.labRecall.Name = "labRecall";
             this.labRecall.Size = new System.Drawing.Size(20, 22);
             this.labRecall.TabIndex = 3;
@@ -134,7 +137,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label2.Location = new System.Drawing.Point(137, 38);
+            this.label2.Location = new System.Drawing.Point(163, 38);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(45, 15);
             this.label2.TabIndex = 4;
@@ -165,28 +168,26 @@
             this.groupBox2.Controls.Add(this.btn_classify);
             this.groupBox2.Controls.Add(this.comboM);
             this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.groupBox2.Location = new System.Drawing.Point(584, 10);
+            this.groupBox2.Location = new System.Drawing.Point(724, 10);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(154, 81);
             this.groupBox2.TabIndex = 7;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Classification";
             // 
-            // groupBox3
+            // btn_classify
             // 
-            this.groupBox3.Controls.Add(this.label14);
-            this.groupBox3.Controls.Add(this.btnAddText);
-            this.groupBox3.Controls.Add(this.numTo);
-            this.groupBox3.Controls.Add(this.label16);
-            this.groupBox3.Controls.Add(this.numFrom);
-            this.groupBox3.Controls.Add(this.label15);
-            this.groupBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.groupBox3.Location = new System.Drawing.Point(349, 10);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(229, 81);
-            this.groupBox3.TabIndex = 8;
-            this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "Input";
+            this.btn_classify.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.btn_classify.Image = global::NewsClassifier.Properties.Resources.tag_red;
+            this.btn_classify.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btn_classify.Location = new System.Drawing.Point(6, 43);
+            this.btn_classify.Name = "btn_classify";
+            this.btn_classify.Size = new System.Drawing.Size(142, 30);
+            this.btn_classify.TabIndex = 0;
+            this.btn_classify.Text = "Classify!";
+            this.btn_classify.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btn_classify.UseVisualStyleBackColor = true;
+            this.btn_classify.Click += new System.EventHandler(this.btn_classify_Click);
             // 
             // comboM
             // 
@@ -199,47 +200,21 @@
             this.comboM.Size = new System.Drawing.Size(142, 23);
             this.comboM.TabIndex = 1;
             // 
-            // label15
+            // groupBox3
             // 
-            this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(7, 22);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(50, 15);
-            this.label15.TabIndex = 2;
-            this.label15.Text = "ID from:";
-            // 
-            // numFrom
-            // 
-            this.numFrom.Location = new System.Drawing.Point(63, 21);
-            this.numFrom.Maximum = new decimal(new int[] {
-            21578,
-            0,
-            0,
-            0});
-            this.numFrom.Name = "numFrom";
-            this.numFrom.Size = new System.Drawing.Size(62, 21);
-            this.numFrom.TabIndex = 3;
-            // 
-            // label16
-            // 
-            this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(37, 49);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(20, 15);
-            this.label16.TabIndex = 4;
-            this.label16.Text = "to:";
-            // 
-            // numTo
-            // 
-            this.numTo.Location = new System.Drawing.Point(63, 47);
-            this.numTo.Maximum = new decimal(new int[] {
-            21578,
-            0,
-            0,
-            0});
-            this.numTo.Name = "numTo";
-            this.numTo.Size = new System.Drawing.Size(62, 21);
-            this.numTo.TabIndex = 5;
+            this.groupBox3.Controls.Add(this.label14);
+            this.groupBox3.Controls.Add(this.btnAddText);
+            this.groupBox3.Controls.Add(this.numTo);
+            this.groupBox3.Controls.Add(this.label16);
+            this.groupBox3.Controls.Add(this.numFrom);
+            this.groupBox3.Controls.Add(this.label15);
+            this.groupBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.groupBox3.Location = new System.Drawing.Point(473, 10);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(229, 81);
+            this.groupBox3.TabIndex = 8;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Input";
             // 
             // label14
             // 
@@ -264,19 +239,47 @@
             this.btnAddText.UseVisualStyleBackColor = true;
             this.btnAddText.Click += new System.EventHandler(this.btnAddText_Click);
             // 
-            // btn_classify
+            // numTo
             // 
-            this.btn_classify.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.btn_classify.Image = global::NewsClassifier.Properties.Resources.tag_red;
-            this.btn_classify.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btn_classify.Location = new System.Drawing.Point(6, 43);
-            this.btn_classify.Name = "btn_classify";
-            this.btn_classify.Size = new System.Drawing.Size(142, 30);
-            this.btn_classify.TabIndex = 0;
-            this.btn_classify.Text = "Classify!";
-            this.btn_classify.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btn_classify.UseVisualStyleBackColor = true;
-            this.btn_classify.Click += new System.EventHandler(this.btn_classify_Click);
+            this.numTo.Location = new System.Drawing.Point(63, 47);
+            this.numTo.Maximum = new decimal(new int[] {
+            21578,
+            0,
+            0,
+            0});
+            this.numTo.Name = "numTo";
+            this.numTo.Size = new System.Drawing.Size(62, 21);
+            this.numTo.TabIndex = 5;
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(37, 49);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(20, 15);
+            this.label16.TabIndex = 4;
+            this.label16.Text = "to:";
+            // 
+            // numFrom
+            // 
+            this.numFrom.Location = new System.Drawing.Point(63, 21);
+            this.numFrom.Maximum = new decimal(new int[] {
+            21578,
+            0,
+            0,
+            0});
+            this.numFrom.Name = "numFrom";
+            this.numFrom.Size = new System.Drawing.Size(62, 21);
+            this.numFrom.TabIndex = 3;
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(7, 22);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(50, 15);
+            this.label15.TabIndex = 2;
+            this.label15.Text = "ID from:";
             // 
             // ID
             // 
@@ -290,14 +293,14 @@
             // 
             this.Content.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.Content.DataPropertyName = "Text";
-            this.Content.HeaderText = "Content";
+            this.Content.HeaderText = "Content Snapshots";
             this.Content.Name = "Content";
             this.Content.ReadOnly = true;
             // 
             // Prediction
             // 
             this.Prediction.DataPropertyName = "Prediction";
-            this.Prediction.HeaderText = "Prediction";
+            this.Prediction.HeaderText = "Predicted Labels";
             this.Prediction.Name = "Prediction";
             this.Prediction.ReadOnly = true;
             this.Prediction.Width = 200;
@@ -305,10 +308,20 @@
             // Real
             // 
             this.Real.DataPropertyName = "TrueLabels";
-            this.Real.HeaderText = "Real Label";
+            this.Real.HeaderText = "Real Labels";
             this.Real.Name = "Real";
             this.Real.ReadOnly = true;
             this.Real.Width = 200;
+            // 
+            // Match
+            // 
+            this.Match.DataPropertyName = "Match";
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.Match.DefaultCellStyle = dataGridViewCellStyle1;
+            this.Match.HeaderText = "Match";
+            this.Match.Name = "Match";
+            this.Match.ReadOnly = true;
+            this.Match.Width = 50;
             // 
             // Status
             // 
@@ -322,7 +335,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(750, 540);
+            this.ClientSize = new System.Drawing.Size(890, 540);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
@@ -337,8 +350,8 @@
             this.groupBox2.ResumeLayout(false);
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numFrom)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numTo)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numFrom)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -367,6 +380,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Content;
         private System.Windows.Forms.DataGridViewTextBoxColumn Prediction;
         private System.Windows.Forms.DataGridViewTextBoxColumn Real;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Match;
         private System.Windows.Forms.DataGridViewImageColumn Status;
     }
 }

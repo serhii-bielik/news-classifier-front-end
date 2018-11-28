@@ -66,6 +66,7 @@
             this.butAdd.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.butAdd.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.butAdd.UseVisualStyleBackColor = true;
+            this.butAdd.Click += new System.EventHandler(this.butAdd_Click);
             // 
             // AddText
             // 
