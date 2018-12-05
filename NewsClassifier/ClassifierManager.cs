@@ -16,6 +16,9 @@ namespace NewsClassifier
         private int newsFrom;
         private int newsTo;
 
+        public Action<ClassificationResult> DoneDelegate { get; set; }
+        public Action<string, string> ErrorDelegate { get; set; }
+
         public ClassifierManager(string textData, int modelId)
         {
             this.textData = textData;
@@ -29,22 +32,29 @@ namespace NewsClassifier
             this.modelId = modelId;
         }
 
-        internal ClassificationResult Classify()
+        internal void Classify()
         {
-            ClassificationResult result = null;
-            string url = PrepareUrl();
-
-            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
-            request.AutomaticDecompression = DecompressionMethods.GZip;
-
-            using (HttpWebResponse response = (HttpWebResponse)request.GetResponse())
-            using (Stream stream = response.GetResponseStream())
-            using (StreamReader reader = new StreamReader(stream))
+            try
             {
-                string json = reader.ReadToEnd();
-                result = JsonConvert.DeserializeObject<ClassificationResult>(json);
+                ClassificationResult result = null;
+                string url = PrepareUrl();
+
+                HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
+                request.AutomaticDecompression = DecompressionMethods.GZip;
+
+                using (HttpWebResponse response = (HttpWebResponse)request.GetResponse())
+                using (Stream stream = response.GetResponseStream())
+                using (StreamReader reader = new StreamReader(stream))
+                {
+                    string json = reader.ReadToEnd();
+                    result = JsonConvert.DeserializeObject<ClassificationResult>(json);
+                }
+                DoneDelegate?.Invoke(result);
             }
-            return result;
+            catch (Exception ex)
+            {
+                ErrorDelegate?.Invoke("Request Error", ex.Message);
+            }            
         }
 
         private string PrepareUrl()
@@ -60,14 +70,26 @@ namespace NewsClassifier
             else
             {
                 url += @"doc-test?content={CONTENT}&model-type={MODEL}";
-                url = url.Replace("{CONTENT}", textData);
+                url = url.Replace("{CONTENT}", System.Net.WebUtility.UrlEncode(textData));
             }       
 
             string model = String.Empty;
             switch (modelId)
             {
                 case 0:
-                    model = "mlp";
+                    model = "mlp-base";
+                    break;
+                case 1:
+                    model = "rnn-base";
+                    break;
+                case 2:
+                    model = "mlp-optim";
+                    break;
+                case 3:
+                    model = "rnn-optim";
+                    break;
+                case 4:
+                    model = "rnn-overfit";
                     break;
             }
 

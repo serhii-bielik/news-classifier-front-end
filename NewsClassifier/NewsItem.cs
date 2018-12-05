@@ -37,9 +37,9 @@ namespace NewsClassifier
                 Status = Resources.accept;
             }
             else
+            {
                 Match = correct + "/" + total;
-
-            
+            }
         }
     }
 }

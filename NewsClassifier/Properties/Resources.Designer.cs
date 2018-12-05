@@ -93,9 +93,9 @@ namespace NewsClassifier.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap newspaper_add {
+        internal static System.Drawing.Bitmap lg_discuss_ellipsis_preloader {
             get {
-                object obj = ResourceManager.GetObject("newspaper_add", resourceCulture);
+                object obj = ResourceManager.GetObject("lg.discuss-ellipsis-preloader", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -103,9 +103,9 @@ namespace NewsClassifier.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap tag_blue_add {
+        internal static System.Drawing.Bitmap newspaper_add {
             get {
-                object obj = ResourceManager.GetObject("tag_blue_add", resourceCulture);
+                object obj = ResourceManager.GetObject("newspaper_add", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

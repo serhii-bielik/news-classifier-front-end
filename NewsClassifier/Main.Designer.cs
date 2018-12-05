@@ -31,6 +31,12 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main));
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Content = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Prediction = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Real = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Match = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Status = new System.Windows.Forms.DataGridViewImageColumn();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.labF1 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -48,18 +54,15 @@
             this.label16 = new System.Windows.Forms.Label();
             this.numFrom = new System.Windows.Forms.NumericUpDown();
             this.label15 = new System.Windows.Forms.Label();
-            this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Content = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Prediction = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Real = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Match = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Status = new System.Windows.Forms.DataGridViewImageColumn();
+            this.labLoader = new System.Windows.Forms.Label();
+            this.picLoader = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numTo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numFrom)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picLoader)).BeginInit();
             this.SuspendLayout();
             // 
             // dataGridView1
@@ -84,8 +87,58 @@
             this.dataGridView1.RowHeadersVisible = false;
             this.dataGridView1.ShowCellToolTips = false;
             this.dataGridView1.ShowEditingIcon = false;
-            this.dataGridView1.Size = new System.Drawing.Size(866, 431);
+            this.dataGridView1.Size = new System.Drawing.Size(865, 394);
             this.dataGridView1.TabIndex = 0;
+            // 
+            // ID
+            // 
+            this.ID.DataPropertyName = "Id";
+            this.ID.HeaderText = "#";
+            this.ID.Name = "ID";
+            this.ID.ReadOnly = true;
+            this.ID.Width = 30;
+            // 
+            // Content
+            // 
+            this.Content.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Content.DataPropertyName = "Text";
+            this.Content.HeaderText = "Content Snapshots";
+            this.Content.Name = "Content";
+            this.Content.ReadOnly = true;
+            // 
+            // Prediction
+            // 
+            this.Prediction.DataPropertyName = "Prediction";
+            this.Prediction.HeaderText = "Predicted Labels";
+            this.Prediction.Name = "Prediction";
+            this.Prediction.ReadOnly = true;
+            this.Prediction.Width = 190;
+            // 
+            // Real
+            // 
+            this.Real.DataPropertyName = "TrueLabels";
+            this.Real.HeaderText = "Real Labels";
+            this.Real.Name = "Real";
+            this.Real.ReadOnly = true;
+            this.Real.Width = 190;
+            // 
+            // Match
+            // 
+            this.Match.DataPropertyName = "Match";
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.Match.DefaultCellStyle = dataGridViewCellStyle1;
+            this.Match.HeaderText = "Match";
+            this.Match.Name = "Match";
+            this.Match.ReadOnly = true;
+            this.Match.Width = 50;
+            // 
+            // Status
+            // 
+            this.Status.DataPropertyName = "Status";
+            this.Status.HeaderText = "Status";
+            this.Status.Name = "Status";
+            this.Status.ReadOnly = true;
+            this.Status.Width = 50;
             // 
             // groupBox1
             // 
@@ -173,7 +226,7 @@
             this.groupBox2.Size = new System.Drawing.Size(154, 81);
             this.groupBox2.TabIndex = 7;
             this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Classification";
+            this.groupBox2.Text = "Classification Model";
             // 
             // btn_classify
             // 
@@ -194,7 +247,11 @@
             this.comboM.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboM.FormattingEnabled = true;
             this.comboM.Items.AddRange(new object[] {
-            "Feedforward MLP"});
+            "Baseline MLP",
+            "Baseline RNN",
+            "Optimized MLP",
+            "Optimized RNN ",
+            "Overfit RNN"});
             this.comboM.Location = new System.Drawing.Point(6, 17);
             this.comboM.Name = "comboM";
             this.comboM.Size = new System.Drawing.Size(142, 23);
@@ -243,7 +300,7 @@
             // 
             this.numTo.Location = new System.Drawing.Point(63, 47);
             this.numTo.Maximum = new decimal(new int[] {
-            21578,
+            1832,
             0,
             0,
             0});
@@ -264,7 +321,7 @@
             // 
             this.numFrom.Location = new System.Drawing.Point(63, 21);
             this.numFrom.Maximum = new decimal(new int[] {
-            21578,
+            1832,
             0,
             0,
             0});
@@ -281,67 +338,45 @@
             this.label15.TabIndex = 2;
             this.label15.Text = "ID from:";
             // 
-            // ID
+            // labLoader
             // 
-            this.ID.DataPropertyName = "Id";
-            this.ID.HeaderText = "#";
-            this.ID.Name = "ID";
-            this.ID.ReadOnly = true;
-            this.ID.Width = 50;
+            this.labLoader.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.labLoader.AutoSize = true;
+            this.labLoader.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labLoader.Location = new System.Drawing.Point(330, 310);
+            this.labLoader.Name = "labLoader";
+            this.labLoader.Size = new System.Drawing.Size(238, 25);
+            this.labLoader.TabIndex = 10;
+            this.labLoader.Text = "Requesting Back-End...";
+            this.labLoader.Visible = false;
             // 
-            // Content
+            // picLoader
             // 
-            this.Content.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Content.DataPropertyName = "Text";
-            this.Content.HeaderText = "Content Snapshots";
-            this.Content.Name = "Content";
-            this.Content.ReadOnly = true;
-            // 
-            // Prediction
-            // 
-            this.Prediction.DataPropertyName = "Prediction";
-            this.Prediction.HeaderText = "Predicted Labels";
-            this.Prediction.Name = "Prediction";
-            this.Prediction.ReadOnly = true;
-            this.Prediction.Width = 200;
-            // 
-            // Real
-            // 
-            this.Real.DataPropertyName = "TrueLabels";
-            this.Real.HeaderText = "Real Labels";
-            this.Real.Name = "Real";
-            this.Real.ReadOnly = true;
-            this.Real.Width = 200;
-            // 
-            // Match
-            // 
-            this.Match.DataPropertyName = "Match";
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.Match.DefaultCellStyle = dataGridViewCellStyle1;
-            this.Match.HeaderText = "Match";
-            this.Match.Name = "Match";
-            this.Match.ReadOnly = true;
-            this.Match.Width = 50;
-            // 
-            // Status
-            // 
-            this.Status.DataPropertyName = "Status";
-            this.Status.HeaderText = "Status";
-            this.Status.Name = "Status";
-            this.Status.ReadOnly = true;
-            this.Status.Width = 50;
+            this.picLoader.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.picLoader.Image = global::NewsClassifier.Properties.Resources.lg_discuss_ellipsis_preloader;
+            this.picLoader.Location = new System.Drawing.Point(3, 1);
+            this.picLoader.Name = "picLoader";
+            this.picLoader.Size = new System.Drawing.Size(885, 500);
+            this.picLoader.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.picLoader.TabIndex = 9;
+            this.picLoader.TabStop = false;
+            this.picLoader.Visible = false;
             // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(890, 540);
+            this.ClientSize = new System.Drawing.Size(889, 503);
+            this.Controls.Add(this.labLoader);
+            this.Controls.Add(this.picLoader);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.dataGridView1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MinimumSize = new System.Drawing.Size(766, 300);
+            this.MinimumSize = new System.Drawing.Size(905, 300);
             this.Name = "Main";
             this.Text = "News Classifier Interface";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
@@ -352,7 +387,9 @@
             this.groupBox3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numTo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numFrom)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picLoader)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -376,6 +413,8 @@
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.NumericUpDown numFrom;
         private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.PictureBox picLoader;
+        private System.Windows.Forms.Label labLoader;
         private System.Windows.Forms.DataGridViewTextBoxColumn ID;
         private System.Windows.Forms.DataGridViewTextBoxColumn Content;
         private System.Windows.Forms.DataGridViewTextBoxColumn Prediction;
